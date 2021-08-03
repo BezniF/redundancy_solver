@@ -1,0 +1,67 @@
+# Produced by CVXGEN, 2021-02-11 11:43:26 -0500.
+# CVXGEN is Copyright (C) 2006-2017 Jacob Mattingley, jem@cvxgen.com.
+# The code in this file is Copyright (C) 2006-2017 Jacob Mattingley.
+# CVXGEN, or solvers produced by CVXGEN, cannot be used for commercial
+# applications without prior written permission from Jacob Mattingley.
+
+# Filename: description.cvxgen.
+# Description: A description of the CVXGEN problem.
+
+dimensions
+  n=6
+end
+
+parameters
+  J (n,n)
+  sigma (n)
+  x (n)
+  sigma_0 (n)
+  Sigma (n)
+  h_goal
+  sigma_obs (n)
+  sigma_obs2 (n)
+  h_lim (n)
+  h_safe
+  h_safe_2
+  Q_lim (n,n) diagonal
+  K (1,2)
+  l nonnegative
+  dotq_adm (n)
+  A (n)
+  B
+  M (n,n)diagonal psd positive
+  theta (2)
+  dotq_max
+  dotq_min
+  a_max (n)
+  Deltat
+  dotq_prev (n)
+  tau
+  F_e (n)
+  dotM (n,n)
+  tau positive
+  D (n,n) positive diagonal
+end
+
+variables
+  dotq (n)
+  delta (2)
+end
+
+minimize
+  quad(dotq - dotq_adm, M) + l*quad(delta)
+subject to
+  -(sigma - sigma_0)'* dotq >= -h_goal - (sigma - sigma_0)'*Sigma -theta[1]*delta[1]
+  Q_lim * dotq >= h_lim
+  2 * (x - sigma_obs)' * J * dotq >= h_safe -theta[2]*delta[2]
+  2 * (x - sigma_obs2)' * J * dotq >= h_safe_2
+  #A' * J * dotq <= B
+
+end
+
+constraints
+  dotq_min <= dotq<= dotq_max
+  -a_max <= dotq - dotq_prev <= a_max
+  #K*delta >= 0
+  #delta[2] == 0
+end

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<launch>
+	
+  <!--	ur10e gazebo launchfile	[NOW I USE VREP]-->
+  <!--<include file="$(find ur_e_gazebo)/launch/ur10e.launch"/>-->
+
+  <!-- Load the URDF, SRDF and other .yaml configuration files on the param server -->
+  <include file="$(find ur10_e_moveit_config)/launch/planning_context.launch">
+    <arg name="load_robot_description" value="true"/>
+    <arg name="limited" value="false"/>
+  </include>
+
+  <arg name="ADMITTANCE_PARAMS_FILE" default="$(find redundancy_solver)/config/admittance_params.yaml" />
+  <rosparam file="$(arg ADMITTANCE_PARAMS_FILE)" command="load"/>  
+
+</launch>

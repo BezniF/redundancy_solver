@@ -1,0 +1,4 @@
+geometry_msgs/Pose[] goals
+---
+bool success
+float64 distance

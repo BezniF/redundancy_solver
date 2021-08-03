@@ -1,0 +1,4 @@
+sensor_msgs/JointState[] goals
+---
+bool success
+float64 distance

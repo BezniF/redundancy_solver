@@ -1,0 +1,19 @@
+# Admittance parameters for two mass damper systems
+# (the arm and the platform) with params (mass_arm, damping_arm)
+# and (mass_platform, damping_platform) respectively, connected by a
+# spring-damper with parameters (damping_coupling, stiffness_coupling,
+# equilibrium_point_spring)
+mass_arm: [0.75,0,0,0,0,0,
+           0,0.75,0,0,0,0,
+           0,0,0.75,0,0,0,
+           0,0,0,0.25,0,0,
+           0,0,0,0,0.25,0,
+           0,0,0,0,0,0.25]
+
+damping_arm: [0.05,0,0,0,0,0,
+              0,0.05,0,0,0,0,
+              0,0,0.05,0,0,0,
+              0,0,0,0.025,0,0,
+              0,0,0,0,0.025,0,
+              0,0,0,0,0,0.025]
+
